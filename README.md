@@ -1,4 +1,4 @@
 # demo1
 This is my first repo
 <br>
-author - pranav
+author - pranav patil
