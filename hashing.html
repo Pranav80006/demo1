@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hashing in Data Structures</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #4CAF50;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #555;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .key-point {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-left: 4px solid #4CAF50;
+            margin: 20px 0;
+        }
+        ul {
+            margin: 10px 0;
+        }
+        li {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>What is Hashing in Data Structures?</h1>
+        
+        <h2>Definition</h2>
+        <p>
+            <strong>Hashing</strong> is a technique used in data structures to store and retrieve data efficiently. 
+            It involves mapping data of arbitrary size to fixed-size values using a mathematical function called a 
+            <strong>hash function</strong>. The resulting value is called a <strong>hash code</strong> or 
+            <strong>hash value</strong>, which is used as an index to store the data in a data structure called a 
+            <strong>hash table</strong>.
+        </p>
+
+        <div class="key-point">
+            <strong>Key Concept:</strong> Hashing transforms data into a fixed-size integer value that serves as 
+            an address for storing and retrieving the data in constant time O(1) on average.
+        </div>
+
+        <h2>Components of Hashing</h2>
+        
+        <h3>1. Hash Function</h3>
+        <p>A hash function takes an input (key) and returns a fixed-size integer (hash value).</p>
+        <p><strong>Properties of a good hash function:</strong></p>
+        <ul>
+            <li><strong>Deterministic:</strong> Same input always produces the same output</li>
+            <li><strong>Uniform Distribution:</strong> Hash values should be evenly distributed</li>
+            <li><strong>Fast Computation:</strong> Should be quick to compute</li>
+            <li><strong>Minimize Collisions:</strong> Different inputs should produce different outputs</li>
+        </ul>
+
+        <h3>2. Hash Table</h3>
+        <p>
+            A hash table is a data structure that stores key-value pairs. It uses the hash value as an index 
+            to determine where the data should be stored in an array.
+        </p>
+
+        <h3>3. Collision Handling</h3>
+        <p>
+            A <strong>collision</strong> occurs when two different keys produce the same hash value. 
+            Common collision resolution techniques include:
+        </p>
+        <ul>
+            <li><strong>Chaining:</strong> Store multiple elements at the same index using linked lists</li>
+            <li><strong>Open Addressing:</strong> Find another empty slot using probing (linear, quadratic, or double hashing)</li>
+        </ul>
+
+        <h2>Example: Simple Hash Function</h2>
+        <pre><code>// Simple hash function for strings
+function hashFunction(key, tableSize) {
+    let hash = 0;
+    for (let i = 0; i < key.length; i++) {
+        hash += key.charCodeAt(i);
+    }
+    return hash % tableSize;
+}
+
+// Example usage
+let tableSize = 10;
+console.log(hashFunction("apple", tableSize));  // Returns index 0-9
+console.log(hashFunction("banana", tableSize)); // Returns index 0-9</code></pre>
+
+        <h2>Time Complexity</h2>
+        <ul>
+            <li><strong>Average Case:</strong>
+                <ul>
+                    <li>Search: O(1)</li>
+                    <li>Insert: O(1)</li>
+                    <li>Delete: O(1)</li>
+                </ul>
+            </li>
+            <li><strong>Worst Case:</strong> O(n) - when all keys hash to the same index</li>
+        </ul>
+
+        <h2>Applications of Hashing</h2>
+        <ul>
+            <li><strong>Databases:</strong> Fast data retrieval using hash indexes</li>
+            <li><strong>Caching:</strong> Quick lookup of cached data</li>
+            <li><strong>Password Storage:</strong> Storing hashed passwords for security</li>
+            <li><strong>Hash Tables/Maps:</strong> Implementing dictionaries and sets</li>
+            <li><strong>Checksums:</strong> Data integrity verification</li>
+            <li><strong>Cryptography:</strong> Digital signatures and message authentication</li>
+            <li><strong>Load Balancing:</strong> Distributing requests across servers</li>
+        </ul>
+
+        <h2>Common Hash Table Implementations</h2>
+        <ul>
+            <li><strong>JavaScript:</strong> Map, Set, Object (uses hashing internally)</li>
+            <li><strong>Python:</strong> dict, set</li>
+            <li><strong>Java:</strong> HashMap, HashSet, Hashtable</li>
+            <li><strong>C++:</strong> unordered_map, unordered_set</li>
+        </ul>
+
+        <h2>Advantages</h2>
+        <ul>
+            <li>Fast data access (constant time on average)</li>
+            <li>Efficient for large datasets</li>
+            <li>Simple implementation</li>
+            <li>Dynamic resizing possible</li>
+        </ul>
+
+        <h2>Disadvantages</h2>
+        <ul>
+            <li>Collisions can degrade performance</li>
+            <li>No ordering of elements</li>
+            <li>Requires good hash function design</li>
+            <li>Extra memory for storing hash table structure</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>
+            Hashing is a fundamental technique in computer science that enables efficient data storage and 
+            retrieval. Understanding hashing is crucial for designing high-performance applications and 
+            solving algorithmic problems that require fast lookups.
+        </p>
+    </div>
+</body>
+</html>
